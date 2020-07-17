@@ -1,0 +1,16 @@
+<table>
+    <thead>
+    <tr>
+        <td>
+            State
+        </td>
+        <td>
+            Created at
+        </td>
+    </tr>
+    </thead>
+    <tr ng-repeat="(key, value) in history.ohm.history">
+        <td>{{value.state}}</td>
+        <td>{{history.formatDate(value.at)}}</td>
+    </tr>
+</table>
