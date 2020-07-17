@@ -3,8 +3,8 @@
     {
       "id": "0",
       "trackingId": "1e62adfe",
-      "status": "REFUSED",
-      "comment": "asdasd",
+      "status": "DELIVERED",
+      "comment": "asd",
       "description": {
         "volts": 12,
         "amperes": 2
@@ -31,8 +31,8 @@
           "at": "123456789"
         },
         {
-          "state": "REFUSED",
-          "at": 1594959082
+          "state": "DELIVERED",
+          "at": 1594959470
         }
       ]
     },
@@ -57,26 +57,6 @@
         {
           "state": "PREPARING",
           "at": "123456709"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "trackingId": "0eEWDlo4N",
-      "status": "CREATED",
-      "comment": "",
-      "description": {
-        "volts": 12,
-        "amperes": 2
-      },
-      "client": {
-        "name": "John Doe",
-        "address": "13th Avenue, Los Diablos"
-      },
-      "history": [
-        {
-          "state": "CREATED",
-          "at": 1594958106
         }
       ]
     }

@@ -48,14 +48,14 @@ function serve() {
         }
 
         // Usually this will point us which is our next available status
-        let action = statuses[ohm.status];
+        let status = statuses[ohm.status];
 
-        if( ! action) {
+        if( ! status) {
             res.status(400).send("You can't do that. Contact our support.")
         }
 
         // ... Except for in delivery. Which we handle by an additional parameter
-        if(Array.isArray(action)) {
+        if(Array.isArray(status)) {
 
             // If the option input is invalid, the status remains 0.
             let userChoice = 0;
@@ -63,13 +63,13 @@ function serve() {
                 userChoice = parseInt(req.params.option)-1
             }
 
-            action = action[userChoice];
+            status = status[userChoice];
         }
 
-        Utils.updateOhmStatus(req.params.id, action);
+        Utils.updateOhmStatus(req.params.id, status);
         // We're emitting a new history state object every time, as the db can't update the object in one go.
         Utils.updateOhmHistory(req.params.id, [...ohm.history, {
-            state: action,
+            state: status,
 
             // Using UNIX timestamp
             at: Math.floor(new Date() / 1000)
