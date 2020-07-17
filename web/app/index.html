@@ -1,30 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="lib/angular/angular.js"></script>
-        <script src="./main.js"></script>
-        <link rel="stylesheet" type="text/css" href="main.css">
-        <title>Ohm Delivery</title>
-    </head>
-    <body>
-        <div class="banner">
-            <h1>Ohm Delivery</h1>
-            <h2>Get shocked by the power</h2>
-        </div>
-        
-        <div ng-app="ohm-delivery">
-            <form ng-controller="tracking" ng-submit="sendData()">
-                <p>
-                    <input id="tracking" type="text" ng-model="trackingId" placeholder="Enter your tracking id"/>
-                </p>
-                <p>
-                    <button id="formBtn" type="submit">Submit</button>
-                </p>
-                <p>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="lib/angular/angular.js"></script>
+
+    <script src="./main.js"></script>
+    <!-- SERVICES -->
+    <script src="./statusService.js"></script>
+
+    <!-- COMPONENTS -->
+    <script src="./ohm-history/ohm-history.component.js"></script>
+    <script src="./ohm-comment/ohm-comment.component.js"></script>
+
+    <!-- STYLESHEETS -->
+
+    <!-- Reset.css courtesy of http://meyerweb.com/eric/tools/css/reset/ -->
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <!-- Water.css courtesy of https://watercss.kognise.dev/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
+    <title>Ohm Delivery</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="banner">
+    <h1>Ohm Delivery</h1>
+    <h2>Get shocked by the power</h2>
+</div>
+
+<div ng-app="ohm-delivery">
+    <form ng-controller="tracking as tracking" ng-submit="sendData()">
+        <div class="">
+            <div class="widget">
+                <h2>Step 1.</h2>
+                <input class="full-w" id="tracking" type="text" ng-model="trackingId" placeholder="Enter your tracking id"/>
+                <button ng-if="trackingId != ''" class="" id="formBtn" type="submit">Find</button>
+                <div>
                     <span ng-if="errorMessage">{{errorMessage}}</span>
-                </p>
-            </form>
+                </div>
+            </div>
         </div>
-    </body>
+
+        <div class="row">
+            <div ng-if="ohm" class="column widget">
+                <h2>Step 2.</h2>
+                <div>Your package's status is <b>{{statusLabel}}</b>.
+                    <br/>It was sent to <b>{{ohm.client.address}}</b>, to be received by <b>{{ohm.client.name}}</b>.
+                </div>
+                <button type="button" ng-click="showHistory = !showHistory;" ng-init="showHistory = false">
+                    {{showHistory ? 'Hide history' : 'Show history'}}
+                </button>
+                <ohm-history ng-if="showHistory" ohm="ohm"></ohm-history>
+
+            </div>
+        </div>
+        <div class="row">
+            <div ng-if="ohm" class="column widget">
+
+                <!-- If I had 2 or more cases where branching logic was needed, I'd map the transitions. -->
+                <!--As it's only one, it's not necessary -->
+                <div ng-if="ohm.status == 'IN_DELIVERY'">
+                    <h2>Options:</h2>
+                    <button type="button" ng-click="markReceived()" >
+                        Mark package as received
+                    </button>
+                    <button type="button" ng-click="markReject()" >
+                        Reject package
+                    </button>
+                </div>
+                <div ng-if="ohm.status != 'IN_DELIVERY'">
+                    You have no more actions to take here. Enjoy your day!
+                    <br/>
+                    <br/>
+                    <ohm-comment ohm="ohm"></ohm-comment>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
 </html>
