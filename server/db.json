@@ -3,7 +3,7 @@
     {
       "id": "0",
       "trackingId": "1e62adfe",
-      "status": "DELIVERED",
+      "status": "IN_DELIVERY",
       "comment": null,
       "description": {
         "volts": 12,
