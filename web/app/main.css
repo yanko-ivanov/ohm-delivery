@@ -1,35 +1,39 @@
-body {
-    margin: 0px 0px 0px 0px;
-    font-size: 16px;
-    font-family: "Open Sans",serif;
-}
-
 .banner {
-    background-color: dodgerblue;
-}
-
-h1 {
-    font-family: Arial, sans-serif;
-    margin: 0 auto;
-    padding-top: 10px;
+    background-color: lightblue;
     text-align: center;
+    padding: 20px;
 }
 
-h2 {
-    font-family: Arial, sans-serif;
-    margin: 0 auto;
-    padding-top: 0px;
-    padding-bottom: 10px;
-    text-align: center;
-    font-style: italic;
-}
-
-input {
-    margin: 2em auto 1em;
-    width: 50%;
-}
 p {
     text-align: center;
     margin: auto;
     line-height: 2.0;
+}
+
+.widget {
+
+    border-radius: 4px;
+    padding:10px;
+    box-shadow:0px 0px 3px #bebebe;
+    margin:10px;
+    transition: all ease 0.2s;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+
+.full-w {
+    width: 95%;
 }

@@ -1,0 +1,9 @@
+{
+  "CREATED": "PREPARING",
+  "PREPARING": "READY",
+  "READY": "IN_DELIVERY",
+  "IN_DELIVERY": [
+    "DELIVERED",
+    "REFUSED"
+  ]
+}
