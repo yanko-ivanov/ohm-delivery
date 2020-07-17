@@ -1,12 +1,15 @@
-const shortid = require('shortid')
+
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser')
 const Utils = require('./utils');
 const statuses = require('./options')
+const mountReorderRoute = require('./routes/reorder')
 app.use(bodyParser.json())
 
 function serve() {
+
+    mountReorderRoute(app);
 
     /**
      * Handles comment updates
