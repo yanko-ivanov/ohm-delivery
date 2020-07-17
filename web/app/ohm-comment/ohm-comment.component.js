@@ -8,7 +8,8 @@ angular.module('ohm-delivery').component('ohmComment', {
         let self = this;
 
         self.$onInit = function () {
-            self.comment = self.ohm.comment.trim() != '' ? self.ohm.comment : '';
+            // comment is sometimes null in db so we need a sanity check
+            self.comment = self.ohm.comment && self.ohm.comment.trim() != '' ? self.ohm.comment : '';
             $scope.comment = self.comment;
 
             const successHandler = (result) => {
